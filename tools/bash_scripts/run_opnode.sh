@@ -14,14 +14,15 @@ if [ "$code" = 401 ]; then
     ./bin/op-node \
         --l2=http://opgeth:8551 \
         --l2.jwt-secret=./jwt.txt \
+        --pprof.enabled \
         --sequencer.enabled \
         --sequencer.l1-confs=3 \
+        --p2p.sequencer.key=$SEQ_KEY \
         --verifier.l1-confs=3 \
         --rollup.config=./rollup.json \
         --rpc.addr=0.0.0.0 \
         --rpc.port=8547 \
         --rpc.enable-admin \
-        --p2p.sequencer.key=$SEQ_KEY \
         --l1=$L1_RPC \
         --l1.rpckind=$RPC_KIND\
         --p2p.listen.ip=0.0.0.0 \
