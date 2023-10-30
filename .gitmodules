@@ -1,0 +1,10 @@
+[submodule "optimism"]
+	path = optimism
+	url = https://github.com/ethereum-optimism/optimism.git
+[submodule "op-geth"]
+	path = op-geth
+	url = https://github.com/ethereum-optimism/op-geth.git
+[submodule "services/blockscout/source"]
+	path = services/blockscout/source
+	url = https://github.com/blockscout/blockscout.git
+	branch = production-optimism-stg

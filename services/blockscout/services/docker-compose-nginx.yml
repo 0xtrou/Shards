@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  proxy:
+    image: nginx
+    container_name: proxy
+    extra_hosts:
+      - 'host.docker.internal:${DOCKER_HOST_IP:-host-gateway}'
+    volumes:
+      - "../proxy:/etc/nginx/templates"
+    environment:
+      BACK_PROXY_PASS: ${BACK_PROXY_PASS:-http://backend:4000}
+      FRONT_PROXY_PASS: ${FRONT_PROXY_PASS:-http://frontend:3000}
+    ports:
+      - ${DOCKER_HOST_IP:-127.0.0.1}:8088:80
+      - ${DOCKER_HOST_IP:-127.0.0.1}:8080:8080
+      - ${DOCKER_HOST_IP:-127.0.0.1}:8081:8081

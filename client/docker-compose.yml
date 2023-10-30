@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  builder:
+    image: shards-builder
+    build:
+      context: ../
+      dockerfile: ./services/op/builder-client/Dockerfile
+    container_name: 'builder'
+    environment:
+      L1_RPC: ${L1_RPC}
+      L1_CHAIN_ID: ${L1_CHAIN_ID}
+      ETH_RPC_URL: ${L1_RPC}
+      DEPLOYMENT_CONTEXT: ${DEPLOYMENT_CONTEXT}
+      L2_BLOCKTIME: ${L2_BLOCKTIME}
+      L1_BLOCKTIME: ${L1_BLOCKTIME}
+      L2_CHAIN_ID: ${L2_CHAIN_ID}
+    volumes:
+      - ../tools/templates:/opstack-temp/tools/templates
+      - ../tools/bash_scripts:/opstack-temp/tools/bash_scripts
+      - ./assets:/assets
+      - opstack-volume-client:/opstack/
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://localhost:59100"
+        syslog-format: "rfc3164"
+        tag: "builderlogs"
+
+  opgeth:
+    container_name: 'opgeth'
+    image: shards-builder
+    environment:
+      GETH_BOOTNODES: ${GETH_BOOTNODES}
+      L2_SEQUENCER_HTTP: ${L2_SEQUENCER_HTTP}
+      L2_CHAIN_ID: ${L2_CHAIN_ID}
+    volumes:
+      - ../tools/templates:/opstack-temp/tools/templates
+      - ../tools/bash_scripts:/opstack-temp/tools/bash_scripts
+      - opstack-volume-client:/opstack/
+    depends_on:
+      - builder
+    restart:
+      always
+    ports:
+      - ${DOCKER_HOST_IP:-127.0.0.1}:8551:8551
+      - ${DOCKER_HOST_IP:-127.0.0.1}:30303:30303
+      - ${DOCKER_HOST_IP:-127.0.0.1}:8545:8545
+    command: "sh /opstack-temp/tools/bash_scripts/run_opgeth_client.sh"
+
+  opnode:
+    container_name: 'opnode'
+    image: shards-builder
+    environment:
+      STATIC_NODES: ${STATIC_NODES}
+      L1_RPC: ${L1_RPC}
+      RPC_KIND: ${RPC_KIND}
+    volumes:
+      - ../tools/templates:/opstack-temp/tools/templates
+      - ../tools/bash_scripts:/opstack-temp/tools/bash_scripts
+      - opstack-volume-client:/opstack/
+    depends_on:
+      - builder
+    restart: always
+    ports:
+      - ${DOCKER_HOST_IP:-127.0.0.1}:8547:8547
+      - ${DOCKER_HOST_IP:-127.0.0.1}:9003:9003
+    command: "sh /opstack-temp/tools/bash_scripts/run_opnode_client.sh"
+
+volumes:
+  opstack-volume-client:
+
+networks:
+  shared_network:

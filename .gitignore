@@ -1,0 +1,8 @@
+.env
+services/redis-data/
+services/blockscout-db-data/
+logs/
+test.conf
+test.js
+assets/genesis.json
+assets/rollup.json
