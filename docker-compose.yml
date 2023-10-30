@@ -55,7 +55,6 @@ services:
   opnode:
     image: shards-builder
     container_name: 'opnode'
-    build: ./services/op/opnode
     environment:
       SEQ_KEY: ${PRIVATE_KEY_SEQUENCER}
       L1_RPC: ${L1_RPC}
