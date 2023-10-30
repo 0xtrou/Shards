@@ -48,6 +48,7 @@ services:
       always
     ports:
       - ${DOCKER_HOST_IP:-127.0.0.1}:30303:30303
+      - ${DOCKER_HOST_IP:-127.0.0.1}:8551:8551
       - ${DOCKER_HOST_IP:-127.0.0.1}:8545:8545
     command: "sh /opstack-temp/tools/bash_scripts/run_opgeth.sh"
   
@@ -68,7 +69,6 @@ services:
     ports:
       - ${DOCKER_HOST_IP:-127.0.0.1}:8547:8547
       - ${DOCKER_HOST_IP:-127.0.0.1}:9003:9003
-      - ${DOCKER_HOST_IP:-127.0.0.1}:8551:8551
     command: "sh /opstack-temp/tools/bash_scripts/run_opnode.sh"
 
   opbatcher:

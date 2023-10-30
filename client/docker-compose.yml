@@ -45,6 +45,7 @@ services:
     ports:
       - ${DOCKER_HOST_IP:-127.0.0.1}:30303:30303
       - ${DOCKER_HOST_IP:-127.0.0.1}:8545:8545
+      - ${DOCKER_HOST_IP:-127.0.0.1}:8551:8551
     command: "sh /opstack-temp/tools/bash_scripts/run_opgeth_client.sh"
 
   opnode:
@@ -62,7 +63,6 @@ services:
       - builder
     restart: always
     ports:
-      - ${DOCKER_HOST_IP:-127.0.0.1}:8551:8551
       - ${DOCKER_HOST_IP:-127.0.0.1}:8547:8547
       - ${DOCKER_HOST_IP:-127.0.0.1}:9003:9003
     command: "sh /opstack-temp/tools/bash_scripts/run_opnode_client.sh"
