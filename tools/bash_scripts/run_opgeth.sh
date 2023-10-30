@@ -27,6 +27,7 @@ else
         --authrpc.vhosts="*" \
         --authrpc.addr=0.0.0.0 \
         --authrpc.port=8551 \
+        --rollup.disabletxpoolgossip=true \
         --password=./datadir/password \
         --authrpc.jwtsecret=./jwt.txt \
         --rollup.disabletxpoolgossip=true
