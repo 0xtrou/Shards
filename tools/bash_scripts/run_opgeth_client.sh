@@ -30,5 +30,8 @@ else
         --rollup.disabletxpoolgossip=true \
         --password=./datadir/password \
         --rollup.sequencerhttp=$L2_SEQUENCER_HTTP \
-        --bootnodes=$GETH_BOOTNODES
+        --bootnodes=$GETH_BOOTNODES \
+        --miner.gaslimit=150000000 \
+        --rpc.gascap=150000000
+
 fi
