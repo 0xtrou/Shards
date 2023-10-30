@@ -6,3 +6,6 @@ test.conf
 test.js
 client/assets/genesis.json
 client/assets/rollup.json
+blockscout-db-data
+redis-data
+logs
