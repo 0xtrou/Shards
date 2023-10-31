@@ -13,12 +13,6 @@ if ! [ -f "/opstack/op-geth/genesis.json" ] && ! [ -f "/opstack/optimism/op-node
       exit 0
     fi
 
-    if [ -f "/assets/geth.tar.gz" ]; then
-        echo "Found snapshot, copying..."
-        cp /assets/geth.tar.gz /opstack/op-geth/datadir
-        tar xvf /opstack/op-geth/datadir/geth.tar.gz
-    fi
-
     # Generate the L2 config files
     cd /opstack/optimism/op-node
     openssl rand -hex 32 > jwt.txt
@@ -28,6 +22,14 @@ if ! [ -f "/opstack/op-geth/genesis.json" ] && ! [ -f "/opstack/optimism/op-node
     cd /opstack/op-geth
     echo "pwd" > datadir/password
     build/bin/geth init --datadir=datadir genesis.json
+
+    if [ -f "/assets/geth.tar.gz" ]; then
+        echo "Found snapshot, copying..."
+        cp /assets/geth.tar.gz /opstack/op-geth/datadir
+        tar xvf /opstack/op-geth/datadir/geth.tar.gz
+        rm -rf geth.tar.gz
+    fi
+
     echo "Build Successful ✅"
     exit 0
 else
