@@ -1,8 +1,14 @@
 #!/bin/bash
 
 # Find the Addresss of the L2 OutPutOracle
-L2OO_ADDR=$(cat /opstack/optimism/packages/contracts-bedrock/deployments/getting-started/L2OutputOracleProxy.json | jq -r '.address')
-echo $L2OO_ADDR
+if [ "$L2OO_ADDRESS" = "" ]; then
+    echo "L2OO_ADDRESS not set. Finding L2OO_ADDR"
+    L2OO_ADDRESS=$(cat /opstack/optimism/packages/contracts-bedrock/deployments/getting-started/L2OutputOracleProxy.json | jq -r '.address')
+    echo $L2OO_ADDRESS
+else
+    echo "L2OO_ADDRESS already set. Using L2OO_ADDR"
+    echo $L2OO_ADDRESS
+fi
 
 code=$(curl -s -o /dev/null -w "%{http_code}" 'http://opnode:8547')
 echo "OPProposer Code: "
@@ -15,7 +21,7 @@ if [ "$code" = 200 ]; then
         --poll-interval 12s \
         --rpc.port 8560 \
         --rollup-rpc http://opnode:8547 \
-        --l2oo-address $L2OO_ADDR \
+        --l2oo-address $L2OO_ADDRESS \
         --private-key $PROPOSER_KEY \
         --l1-eth-rpc $L1_RPC
 else

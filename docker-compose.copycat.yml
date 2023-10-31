@@ -97,6 +97,7 @@ services:
     image: shards-builder
     container_name: 'opproposer'
     environment:
+      L2OO_ADDRESS: ${L2OO_ADDRESS}
       PROPOSER_KEY: ${PRIVATE_KEY_PROPOSER}
       L1_RPC: ${L1_RPC}
     volumes:
