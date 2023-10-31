@@ -18,7 +18,7 @@ services:
     volumes:
       - ../tools/templates:/opstack-temp/tools/templates
       - ../tools/bash_scripts:/opstack-temp/tools/bash_scripts
-      - ./assets:/assets
+      - ../assets:/assets
       - opstack-volume-client:/opstack/
     logging:
       driver: syslog

@@ -4,8 +4,8 @@ services/blockscout-db-data/
 logs/
 test.conf
 test.js
-client/assets/genesis.json
-client/assets/rollup.json
+assets/genesis.json
+assets/rollup.json
 blockscout-db-data
 redis-data
 logs
