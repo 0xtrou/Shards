@@ -25,7 +25,7 @@ services:
         POSTGRES_USER: 'blockscout'
         POSTGRES_PASSWORD: 'ceWb1MeLBEeOIfk65gU8EjF8'
     ports:
-      - ${DOCKER_HOST_IP:-127.0.0.1}:7433:5432
+      - ${DOCKER_HOST_IP:-127.0.0.1}:7434:5432
     volumes:
       - ./account-db-data:/var/lib/postgresql/data
     healthcheck:

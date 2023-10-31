@@ -50,7 +50,7 @@ services:
         ETHEREUM_JSONRPC_WS_URL: ${ETHEREUM_JSONRPC_WS_URL}
         CHAIN_ID: ${CHAIN_ID}
         DATABASE_URL: postgresql://blockscout:ceWb1MeLBEeOIfk65gU8EjF8@${DOCKER_HOST_IP:-db}:7432/blockscout?ssl=false
-        ACCOUNT_DATABASE_URL: postgresql://blockscout:ceWb1MeLBEeOIfk65gU8EjF8@${DOCKER_HOST_IP:-db}:7433/blockscout?ssl=false
+        ACCOUNT_DATABASE_URL: postgresql://blockscout:ceWb1MeLBEeOIfk65gU8EjF8@${DOCKER_HOST_IP:-db}:7434/blockscout?ssl=false
 
   visualizer:
     extends:
