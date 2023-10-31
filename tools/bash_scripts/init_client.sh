@@ -3,9 +3,21 @@ if ! [ -f "/opstack/op-geth/genesis.json" ] && ! [ -f "/opstack/optimism/op-node
     echo "Preparing files..."
     cp -R /opstack-temp/* /opstack/
 
-    # copy assets
-    cp /assets/genesis.json /opstack/op-geth
-    cp /assets/rollup.json /opstack/optimism/op-node
+    mkdir /opstack/op-geth/datadir
+
+    if [ -f "/assets/genesis.json" ] && [ -f "/assets/rollup.json" ]; then
+      cp /assets/genesis.json /opstack/op-geth
+      cp /assets/rollup.json /opstack/optimism/op-node
+    else
+      echo "Required assets not found, stop."
+      exit 0
+    fi
+
+    if [ -f "/assets/geth.tar.gz" ]; then
+        echo "Found snapshot, copying..."
+        cp /assets/geth.tar.gz /opstack/op-geth/datadir
+        tar xvf /opstack/op-geth/datadir/geth.tar.gz
+    fi
 
     # Generate the L2 config files
     cd /opstack/optimism/op-node
@@ -14,7 +26,6 @@ if ! [ -f "/opstack/op-geth/genesis.json" ] && ! [ -f "/opstack/optimism/op-node
 
     # Initialize op-geth
     cd /opstack/op-geth
-    mkdir datadir
     echo "pwd" > datadir/password
     build/bin/geth init --datadir=datadir genesis.json
     echo "Build Successful ✅"
