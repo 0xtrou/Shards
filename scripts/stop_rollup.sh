@@ -6,6 +6,6 @@ docker compose stop opnode
 docker compose stop opgeth
 
 # Removed old containers
-docker compose rm opnode
-docker compose rm opgeth
+docker compose rm -f opnode
+docker compose rm -f opgeth
 
