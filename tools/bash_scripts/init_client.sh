@@ -27,8 +27,10 @@ if ! [ -f "/opstack/op-geth/genesis.json" ] && ! [ -f "/opstack/optimism/op-node
         echo "Found snapshot, copying..."
         rm -rf /opstack/op-geth/datadir/geth
         cp /assets/geth.tar.gz /opstack/op-geth/datadir
-        tar xvf /opstack/op-geth/datadir/geth.tar.gz
-        rm -rf geth.tar.gz
+
+        tar xvf /opstack/op-geth/datadir/geth.tar.gz -C /opstack/op-geth/datadir
+        rm -rf /opstack/op-geth/datadir/geth.tar.gz
+        pwd
     fi
 
     echo "Build Successful ✅"
