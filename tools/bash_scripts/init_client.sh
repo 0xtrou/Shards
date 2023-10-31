@@ -25,6 +25,7 @@ if ! [ -f "/opstack/op-geth/genesis.json" ] && ! [ -f "/opstack/optimism/op-node
 
     if [ -f "/assets/geth.tar.gz" ]; then
         echo "Found snapshot, copying..."
+        rm -rf /opstack/op-geth/datadir/geth
         cp /assets/geth.tar.gz /opstack/op-geth/datadir
         tar xvf /opstack/op-geth/datadir/geth.tar.gz
         rm -rf geth.tar.gz
