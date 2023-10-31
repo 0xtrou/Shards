@@ -5,7 +5,8 @@ logs/
 test.conf
 test.js
 assets/genesis.json
-assets/rollup.json
+assets/genesis.json
+assets/geth.tar.gz
 blockscout-db-data
 redis-data
 logs
