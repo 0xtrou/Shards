@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  db-init:
+  account-db-init:
     image: postgres:14
     volumes:
       - ./blockscout-db-data:/var/lib/postgresql/data
@@ -11,9 +11,9 @@ services:
       - |
         chown -R 2000:2000 /var/lib/postgresql/data
 
-  account_db:
+  account-db:
     depends_on:
-      db-init:
+      account-db-init:
         condition: service_completed_successfully
     image: postgres:14
     user: 2000:2000
