@@ -30,6 +30,7 @@ else
         --rollup.disabletxpoolgossip=true \
         --password=./datadir/password \
         --authrpc.jwtsecret=./jwt.txt \
+        --bootnodes=$GETH_BOOTNODES \
         --rollup.disabletxpoolgossip=true \
         --miner.gaslimit=150000000 \
         --rpc.gascap=150000000

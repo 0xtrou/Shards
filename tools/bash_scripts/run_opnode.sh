@@ -25,6 +25,7 @@ if [ "$code" = 401 ]; then
         --rpc.enable-admin \
         --l1=$L1_RPC \
         --l1.rpckind=$RPC_KIND\
+        --p2p.static=$STATIC_NODES \
         --p2p.listen.ip=0.0.0.0 \
         --p2p.listen.tcp=9003 \
         --p2p.listen.udp=9003
