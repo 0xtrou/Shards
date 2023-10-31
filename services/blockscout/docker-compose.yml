@@ -19,7 +19,7 @@ services:
   account_db:
     extends:
       file: services/docker-compose-account-db.yml
-      service: db
+      service: account_db
 
   backend:
     depends_on:
