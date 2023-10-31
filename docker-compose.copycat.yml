@@ -32,6 +32,7 @@ services:
         syslog-address: "udp://localhost:59100"
         syslog-format: "rfc3164"
         tag: "builderlogs"
+    command: "sh /opstack-temp/tools/bash_scripts/init_client.sh"
 
   opgeth:
     image: shards-builder

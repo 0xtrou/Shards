@@ -31,6 +31,8 @@ services:
         syslog-address: "udp://localhost:59100"
         syslog-format: "rfc3164"
         tag: "builderlogs"
+    command: "sh /opstack-temp/tools/bash_scripts/build_bedrock.sh"
+
 
   opgeth:
     image: shards-builder
