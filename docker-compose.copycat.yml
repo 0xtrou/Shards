@@ -38,6 +38,7 @@ services:
     image: shards-builder
     container_name: 'opgeth'
     environment:
+      GETH_BOOTNODES: ${GETH_BOOTNODES}
       SEQUENCER_ADDRESS: ${SEQUENCER_ADDRESS}
       L2_CHAIN_ID: ${L2_CHAIN_ID}
     volumes:
@@ -58,6 +59,7 @@ services:
     image: shards-builder
     container_name: 'opnode'
     environment:
+      STATIC_NODES: ${STATIC_NODES}
       SEQ_KEY: ${PRIVATE_KEY_SEQUENCER}
       L1_RPC: ${L1_RPC}
       RPC_KIND: ${RPC_KIND}
