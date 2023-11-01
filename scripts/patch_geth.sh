@@ -17,8 +17,11 @@ fi
 echo "Initialize dummy client ..."
 docker run -d --rm --name dummy -v $DOCKER_VOLUME:/opstack/ alpine tail -f /dev/null
 
+echo "Waiting to make sure client is initialized ..."
+sleep 3
+
 echo "Copy geth binary to host ..."
-docker cp dummy:/opstack/op-geth/geth.tar.gz ./assets/geth.tar.gz
+docker cp dummy:/opstack/op-geth/geth.tar.gz ./assets/geth.tar.gzd
 
 echo "Start decompressing geth binary ..."
 docker exec dummy tar -xzf /opstack/op-geth/geth.tar.gz -C /opstack/op-geth/
