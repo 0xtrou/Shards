@@ -9,6 +9,11 @@ fi
 
 DOCKER_VOLUME=$1
 
+if [ -z "$DOCKER_VOLUME" ]; then
+    echo "Please provide docker volume path as first argument"
+    exit 1
+fi
+
 echo "Initialize dummy client ..."
 docker run -d --rm --name dummy -v $DOCKER_VOLUME:/opstack/ alpine tail -f /dev/null
 
