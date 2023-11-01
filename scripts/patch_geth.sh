@@ -24,8 +24,8 @@ echo "Copy geth binary to host ..."
 docker cp ./assets/geth.tar.gz dummy:/opstack/op-geth/geth.tar.gz
 
 echo "Start decompressing geth binary ..."
-docker exec dummy tar -xzf /opstack/op-geth/geth.tar.gz -C /opstack/op-geth/
-docker exec dummy cp /opstack/op-geth/geth/* /opstack/op-geth/datadir/geth/
+docker exec dummy tar xvf /opstack/op-geth/geth.tar.gz -C /opstack/op-geth/
+docker exec dummy cp -r /opstack/op-geth/geth/ /opstack/op-geth/datadir/geth/
 
 echo "Cleaning up ..."
 docker exec dummy rm -rf /opstack/op-geth/geth.tar.gz
