@@ -21,7 +21,7 @@ echo "Waiting to make sure client is initialized ..."
 sleep 3
 
 echo "Copy geth binary to host ..."
-docker cp dummy:/opstack/op-geth/geth.tar.gz ./assets/geth.tar.gzd
+docker cp ./assets/geth.tar.gz dummy:/opstack/op-geth/geth.tar.gz
 
 echo "Start decompressing geth binary ..."
 docker exec dummy tar -xzf /opstack/op-geth/geth.tar.gz -C /opstack/op-geth/
